@@ -1,5 +1,5 @@
 //
-//  StateManager.swift
+//  Manager.swift
 //  FallDetector
 //
 //  Created by Nataniel Martin on 3/17/22.
@@ -28,21 +28,25 @@ protocol ManagerDelegate: AnyObject {
 }
 
 final class Manager: ManagerProtocol, MotionTrackingDelegate, FallDetectorDelegate {
-    private let motionTracker: MotionTrackingManager
-    private let fallDetector: FallDetectorManager
-    private let dateFormatter: EventDateFormatter
+    private let motionTracker: MotionTrackingProtocol
+    private let fallDetector: FallDetectorProtocol
+    private let dateFormatter: DateFormatterProtocol
     private let fileIoController: FileIOProtocol
     
     weak var delegate: ManagerDelegate? = nil
 
     private var data: [FallEvent] {
         didSet {
-            delegate?.updateState(shouldRefreshData: true, shouldActionButtonNeedUpdate: false, activityDescription: "")
+            delegate?.updateState(shouldRefreshData: true, shouldActionButtonNeedUpdate: false, activityDescription: nil)
         }
     }
     
     //TODO: change type of dependency injection to protocol for test usage
-    init(data: [FallEvent], motionTrackingManager: MotionTrackingManager =  MotionTrackingManager(), fallDetector: FallDetectorManager = FallDetectorManager(), dateFormatter: EventDateFormatter = DateFormatter(), fileIoController: FileIOProtocol = FileIOController()) {
+    init(data: [FallEvent],
+         motionTrackingManager: MotionTrackingProtocol =  MotionTrackingManager(),
+         fallDetector: FallDetectorProtocol = FallDetectorManager(configuration: .init(predictionWindowSize: 50, shape: 400)),
+         dateFormatter: DateFormatterProtocol = DateFormatter(),
+         fileIoController: FileIOProtocol = FileIOManager()) {
         self.data = data
         self.motionTracker = motionTrackingManager
         self.fallDetector = fallDetector

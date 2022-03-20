@@ -1,5 +1,5 @@
 //
-//  MotionManager.swift
+//  MotionTrackingManager.swift
 //  FallDetector
 //
 //  Created by Nataniel Martin on 3/17/22.
@@ -7,11 +7,7 @@
 
 import CoreMotion
 
-protocol MotionTrackingProtocol {
-    var isAccelerometerAvailable: Bool { get }
-}
-
-enum MotionTrackingError: Error {
+enum MotionTrackingError: Error, Equatable {
     case unavailable
     case motionError(message: String)
 }
@@ -23,8 +19,27 @@ protocol MotionTrackingDelegate: AnyObject {
     func motionTrackingErrored(with error: MotionTrackingError)
 }
 
-class MotionTrackingManager {
-    private let motionManager: CMMotionManager
+protocol MotionTrackingProtocol: AnyObject {
+    var isTracking: Bool { get }
+    var delegate: MotionTrackingDelegate? { get set}
+    
+    func start() throws
+    func stop()
+}
+
+protocol DeviceMotionManagerProtocol: AnyObject {
+    var isAccelerometerActive: Bool { get }
+    var isAccelerometerAvailable: Bool { get }
+    var accelerometerUpdateInterval: TimeInterval { get set }
+    
+    func startAccelerometerUpdates(to queue: OperationQueue, withHandler handler: @escaping CMAccelerometerHandler)
+    func stopAccelerometerUpdates()
+}
+
+extension CMMotionManager: DeviceMotionManagerProtocol {}
+
+final class MotionTrackingManager: MotionTrackingProtocol {
+    private let motionManager: DeviceMotionManagerProtocol
     private let operationQueue: OperationQueue
     
     var isTracking: Bool {
@@ -33,7 +48,7 @@ class MotionTrackingManager {
     
     weak var delegate: MotionTrackingDelegate? = nil
 
-    init(motionManager: CMMotionManager = CMMotionManager(), operationQueue: OperationQueue = .main) {
+    init(motionManager: DeviceMotionManagerProtocol = CMMotionManager(), operationQueue: OperationQueue = .main) {
         self.motionManager = motionManager
         self.operationQueue = operationQueue
     }
@@ -51,6 +66,11 @@ class MotionTrackingManager {
         delegate?.didMotionTrackingStart()
     }
     
+    func stop() {
+        motionManager.stopAccelerometerUpdates()
+        delegate?.didMotionTrackingStop()
+    }
+    
     private func handleError(error: Error?) {
         if let error = error {
             delegate?.motionTrackingErrored(with: .motionError(message: "\(error)"))
@@ -65,10 +85,5 @@ class MotionTrackingManager {
         }
         let rawData = AccelerometerRawData(data: data)
         delegate?.didMotionTrackingUpdates(rawData: rawData)
-    }
-    
-    func stop() {
-        motionManager.stopAccelerometerUpdates()
-        delegate?.didMotionTrackingStop()
     }
 }

@@ -12,47 +12,85 @@ protocol FallDetectorDelegate: AnyObject {
     func fallDetectorUpdate(newPrediction: EventPrediction)
 }
 
-struct EventPrediction {
-    enum State: String {
-        case noFall = "nofall"
-        case fall = "fall"
-    }
+protocol FallDetectorProtocol: AnyObject {
+    var delegate: FallDetectorDelegate? { get set }
     
-    let state: State
-    let precision: Double
-    let timestamp: Date
+    func resetState()
+    func handle(data: AccelerometerRawData)
 }
 
-class FallDetectorManager {
-    private struct Constants {
-        static let predictionWindowSize = 50
-        static let shape = 400
+protocol EventPredictorProtocol {
+    func generateNewPrediction(x: MLMultiArray, y: MLMultiArray, z: MLMultiArray, currentState: MLMultiArray) throws -> EventPrediction
+}
+
+struct EventPredictor: EventPredictorProtocol {
+    private let classifier: FallActivityClassifier
+    
+    init() {
+        self.classifier = try! FallActivityClassifier(configuration: .init())
     }
+    
+    func generateNewPrediction(x: MLMultiArray, y: MLMultiArray, z: MLMultiArray, currentState: MLMultiArray) throws -> EventPrediction {
+        let modelPrediction = try classifier.prediction(
+            x: x,
+            y: y,
+            z: z,
+            stateIn: currentState
+        )
+        let newPrediction = EventPrediction(
+            state: EventPrediction.State(rawValue: modelPrediction.label)!,
+            stateOut: modelPrediction.stateOut,
+            precision: modelPrediction.labelProbability[modelPrediction.label]!,
+            timestamp: .now
+        )
+        return newPrediction
+    }
+}
+
+final class FallDetectorManager: FallDetectorProtocol {
+    struct Configuration {
+        let predictionWindowSize: Int
+        let shape: Int
+    }
+    
     weak var delegate: FallDetectorDelegate? = nil
     private let operationQueue: DispatchQueue
-    private let classifier: FallActivityClassifier
-   
-    private var currentIndexInPredictionWindow = 0
-    private var currentState = try! MLMultiArray(
-        shape: [Constants.shape as NSNumber],
-        dataType: .double
-    )
+    private let configuration: Configuration
+    private let eventPredictor: EventPredictorProtocol
+    
+    private var currentIndexInPredictionWindow: Int
+    private var currentState: MLMultiArray
     private var lastEventPredicted: EventPrediction? = nil
-    private var savedBeginFallPrediction: EventPrediction? = nil // Saving begin fall event to later compute drop time
+    private var savedBeginFallPrediction: EventPrediction? = nil // for later computation of 'drop time'
     
-    private let accelerometerX = try! MLMultiArray(shape: [Constants.predictionWindowSize] as [NSNumber], dataType: .double)
-    private let accelerometerY = try! MLMultiArray(shape: [Constants.predictionWindowSize] as [NSNumber], dataType: .double)
-    private let accelerometerZ = try! MLMultiArray(shape: [Constants.predictionWindowSize] as [NSNumber], dataType: .double)
+    private var accelerometerX: MLMultiArray
+    private var accelerometerY: MLMultiArray
+    private var accelerometerZ: MLMultiArray
     
-    init(operationQueue: DispatchQueue = DispatchQueue.global(qos: .default)) {
+    init(operationQueue: DispatchQueue = DispatchQueue.global(qos: .default), configuration: Configuration, eventPredictor: EventPredictorProtocol = EventPredictor()) {
         self.operationQueue = operationQueue
-        self.classifier = try! FallActivityClassifier(configuration: .init())
+        self.configuration = configuration
+        self.eventPredictor = eventPredictor
+        
+        currentIndexInPredictionWindow = 0
+        self.accelerometerY = try! MLMultiArray(shape: [configuration.predictionWindowSize as NSNumber], dataType: .double)
+        accelerometerX = try! MLMultiArray(shape: [configuration.predictionWindowSize as NSNumber], dataType: .double)
+        accelerometerY = try! MLMultiArray(shape: [configuration.predictionWindowSize as NSNumber], dataType: .double)
+        accelerometerZ = try! MLMultiArray(shape: [configuration.predictionWindowSize as NSNumber], dataType: .double)
+        currentState = try! MLMultiArray(
+            shape: [configuration.shape as NSNumber],
+            dataType: MLMultiArrayDataType.double
+        )
     }
     
     func resetState() {
         currentIndexInPredictionWindow = 0
+        
+        accelerometerX = try! MLMultiArray(shape: [configuration.predictionWindowSize as NSNumber], dataType: .double)
+        accelerometerY = try! MLMultiArray(shape: [configuration.predictionWindowSize as NSNumber], dataType: .double)
+        accelerometerZ = try! MLMultiArray(shape: [configuration.predictionWindowSize as NSNumber], dataType: .double)
         currentState = try! MLMultiArray(
-            shape: [Constants.shape as NSNumber],
+            shape: [configuration.shape as NSNumber],
             dataType: MLMultiArrayDataType.double
         )
         lastEventPredicted = nil
@@ -60,40 +98,24 @@ class FallDetectorManager {
     }
     
     func handle(data: AccelerometerRawData) {
-        operationQueue.async {
-            self.accelerometerX[self.currentIndexInPredictionWindow] = data.x as NSNumber
-            self.accelerometerY[self.currentIndexInPredictionWindow] = data.y as NSNumber
-            self.accelerometerZ[self.currentIndexInPredictionWindow] = data.z as NSNumber
-            
-            // Update prediction array index
-            self.currentIndexInPredictionWindow += 1
-            
-            // If data array is full - execute a prediction
-            if self.currentIndexInPredictionWindow >= Constants.predictionWindowSize {
-                // Move to main thread to update the UI
-                DispatchQueue.main.async {
-                    self.processNewPrediction()
-                }
-                // Start a new prediction window from scratch
-                self.currentIndexInPredictionWindow = 0
-            }
+        self.accelerometerX[self.currentIndexInPredictionWindow] = data.x as NSNumber
+        self.accelerometerY[self.currentIndexInPredictionWindow] = data.y as NSNumber
+        self.accelerometerZ[self.currentIndexInPredictionWindow] = data.z as NSNumber
+        
+        // Update prediction array index
+        self.currentIndexInPredictionWindow += 1
+        
+        // If data array is full - execute a prediction
+        if self.currentIndexInPredictionWindow >= configuration.predictionWindowSize {
+            self.processNewPrediction()
+            // Start a new prediction window from scratch
+            self.currentIndexInPredictionWindow = 0
         }
     }
     
-    func processNewPrediction() {
+    private func processNewPrediction() {
         do {
-            let modelPrediction = try classifier.prediction(
-                x: accelerometerX,
-                y: accelerometerY,
-                z: accelerometerZ,
-                stateIn: currentState
-            )
-            let newPrediction = EventPrediction(
-                state: EventPrediction.State(rawValue: modelPrediction.label)!,
-                precision: modelPrediction.labelProbability[modelPrediction.label]!,
-                timestamp: .now
-            )
-            
+            let newPrediction = try eventPredictor.generateNewPrediction(x: accelerometerX, y: accelerometerY, z: accelerometerZ, currentState: currentState)
             switch (lastEventPredicted?.state, newPrediction.state) {
             case (.noFall, .fall):
                 savedBeginFallPrediction = newPrediction
@@ -109,7 +131,7 @@ class FallDetectorManager {
             }
             
             lastEventPredicted = newPrediction
-            currentState = modelPrediction.stateOut
+            currentState = newPrediction.stateOut
             self.delegate?.fallDetectorUpdate(newPrediction: newPrediction)
         } catch let err {
             print("Prediction Error - Reason: \(err)")

@@ -20,13 +20,15 @@
 		8330CC5A27E370E20065DC50 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC5927E370E20065DC50 /* Manager.swift */; };
 		8330CC5C27E374850065DC50 /* FallEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC5B27E374850065DC50 /* FallEvent.swift */; };
 		8330CC6027E379C00065DC50 /* ManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC5F27E379C00065DC50 /* ManagerTests.swift */; };
-		8330CC6227E38ACD0065DC50 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC6127E38ACD0065DC50 /* MotionManager.swift */; };
+		8330CC6227E38ACD0065DC50 /* MotionTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC6127E38ACD0065DC50 /* MotionTrackingManager.swift */; };
 		83E6F41227E63466003AF49D /* FallDetectorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F41127E63466003AF49D /* FallDetectorManager.swift */; };
 		83E6F41A27E68A9C003AF49D /* FallDetectorManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F41927E68A9C003AF49D /* FallDetectorManagerTests.swift */; };
 		83E6F41C27E68BB2003AF49D /* AccelerometerRawData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F41B27E68BB2003AF49D /* AccelerometerRawData.swift */; };
 		83E6F41E27E69C09003AF49D /* EventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F41D27E69C09003AF49D /* EventCellViewModel.swift */; };
 		83E6F42227E739F6003AF49D /* FallActivityClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F42127E739F6003AF49D /* FallActivityClassifier.mlmodel */; };
-		83E6F42827E7503A003AF49D /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F42727E7503A003AF49D /* FileManager.swift */; };
+		83E6F42827E7503A003AF49D /* FileIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F42727E7503A003AF49D /* FileIOManager.swift */; };
+		83E6F42A27E7689C003AF49D /* EventPrediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F42927E7689C003AF49D /* EventPrediction.swift */; };
+		83E6F42E27E7766D003AF49D /* MotionTrackingManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F42D27E7766D003AF49D /* MotionTrackingManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,13 +66,15 @@
 		8330CC5927E370E20065DC50 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		8330CC5B27E374850065DC50 /* FallEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallEvent.swift; sourceTree = "<group>"; };
 		8330CC5F27E379C00065DC50 /* ManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerTests.swift; sourceTree = "<group>"; };
-		8330CC6127E38ACD0065DC50 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		8330CC6127E38ACD0065DC50 /* MotionTrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionTrackingManager.swift; sourceTree = "<group>"; };
 		83E6F41127E63466003AF49D /* FallDetectorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallDetectorManager.swift; sourceTree = "<group>"; };
 		83E6F41927E68A9C003AF49D /* FallDetectorManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallDetectorManagerTests.swift; sourceTree = "<group>"; };
 		83E6F41B27E68BB2003AF49D /* AccelerometerRawData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerometerRawData.swift; sourceTree = "<group>"; };
 		83E6F41D27E69C09003AF49D /* EventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellViewModel.swift; sourceTree = "<group>"; };
 		83E6F42127E739F6003AF49D /* FallActivityClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = FallActivityClassifier.mlmodel; path = FallDetector/FallActivityClassifier.mlmodel; sourceTree = SOURCE_ROOT; };
-		83E6F42727E7503A003AF49D /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		83E6F42727E7503A003AF49D /* FileIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIOManager.swift; sourceTree = "<group>"; };
+		83E6F42927E7689C003AF49D /* EventPrediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPrediction.swift; sourceTree = "<group>"; };
+		83E6F42D27E7766D003AF49D /* MotionTrackingManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionTrackingManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,7 @@
 			children = (
 				8330CC5F27E379C00065DC50 /* ManagerTests.swift */,
 				83E6F41927E68A9C003AF49D /* FallDetectorManagerTests.swift */,
+				83E6F42D27E7766D003AF49D /* MotionTrackingManagerTests.swift */,
 			);
 			path = FallDetectorTests;
 			sourceTree = "<group>";
@@ -156,10 +161,10 @@
 		83E6F42327E74F48003AF49D /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				83E6F42F27E77E41003AF49D /* EventCell */,
 				83E6F41B27E68BB2003AF49D /* AccelerometerRawData.swift */,
-				8330CC5027E34B400065DC50 /* EventCell.swift */,
 				8330CC5B27E374850065DC50 /* FallEvent.swift */,
-				83E6F41D27E69C09003AF49D /* EventCellViewModel.swift */,
+				83E6F42927E7689C003AF49D /* EventPrediction.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -168,9 +173,9 @@
 			isa = PBXGroup;
 			children = (
 				8330CC5927E370E20065DC50 /* Manager.swift */,
-				8330CC6127E38ACD0065DC50 /* MotionManager.swift */,
+				8330CC6127E38ACD0065DC50 /* MotionTrackingManager.swift */,
 				83E6F41127E63466003AF49D /* FallDetectorManager.swift */,
-				83E6F42727E7503A003AF49D /* FileManager.swift */,
+				83E6F42727E7503A003AF49D /* FileIOManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -182,6 +187,15 @@
 				8330CC5727E3508B0065DC50 /* UITableView+Extention.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		83E6F42F27E77E41003AF49D /* EventCell */ = {
+			isa = PBXGroup;
+			children = (
+				8330CC5027E34B400065DC50 /* EventCell.swift */,
+				83E6F41D27E69C09003AF49D /* EventCellViewModel.swift */,
+			);
+			path = EventCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,11 +331,12 @@
 				8330CC5A27E370E20065DC50 /* Manager.swift in Sources */,
 				8330CC5827E3508B0065DC50 /* UITableView+Extention.swift in Sources */,
 				83E6F42227E739F6003AF49D /* FallActivityClassifier.mlmodel in Sources */,
-				83E6F42827E7503A003AF49D /* FileManager.swift in Sources */,
+				83E6F42827E7503A003AF49D /* FileIOManager.swift in Sources */,
 				83E6F41227E63466003AF49D /* FallDetectorManager.swift in Sources */,
 				8330CC1E27E335D20065DC50 /* MainViewController.swift in Sources */,
 				8330CC5C27E374850065DC50 /* FallEvent.swift in Sources */,
-				8330CC6227E38ACD0065DC50 /* MotionManager.swift in Sources */,
+				8330CC6227E38ACD0065DC50 /* MotionTrackingManager.swift in Sources */,
+				83E6F42A27E7689C003AF49D /* EventPrediction.swift in Sources */,
 				83E6F41E27E69C09003AF49D /* EventCellViewModel.swift in Sources */,
 				8330CC5627E350380065DC50 /* ReusableView.swift in Sources */,
 				83E6F41C27E68BB2003AF49D /* AccelerometerRawData.swift in Sources */,
@@ -336,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83E6F41A27E68A9C003AF49D /* FallDetectorManagerTests.swift in Sources */,
+				83E6F42E27E7766D003AF49D /* MotionTrackingManagerTests.swift in Sources */,
 				8330CC6027E379C00065DC50 /* ManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

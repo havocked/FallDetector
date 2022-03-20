@@ -95,9 +95,10 @@ class ManagerTests: XCTestCase {
         
         let manager = Manager(data: [])
         let managerDelegate = ManagerDelegateTest()
-        managerDelegate.updateStateCalled = { shouldRefreshData, shouldActionButtonNeedUpdate  in
-            XCTAssertEqual(shouldRefreshData, true)
-            XCTAssertEqual(shouldActionButtonNeedUpdate, false)
+        managerDelegate.updateStateCalled = { shouldRefreshData, shouldActionButtonNeedUpdate, activityDescription  in
+            XCTAssertTrue(shouldRefreshData)
+            XCTAssertFalse(shouldActionButtonNeedUpdate)
+            XCTAssertNil(activityDescription)
             expectation.fulfill()
         }
         
@@ -110,14 +111,15 @@ class ManagerTests: XCTestCase {
     }
 }
 
-/** Could be generated using Sourcery, but here let's keep things simple and just create a test class **/
+//TODO: Generate test classes with Sourcery
 class ManagerDelegateTest: ManagerDelegate {
-    var updateStateCalled: ((Bool, Bool) -> ())? = nil
+
+    var updateStateCalled: ((Bool, Bool, String?) -> ())? = nil
     var showAlertCalled: ((String, String) -> ())? = nil
     var showActionSheetCalled: ((String, String, String, DeleteActionHandler) -> ())? = nil
     
-    func updateState(shouldRefreshData: Bool, shouldActionButtonNeedUpdate: Bool) {
-        updateStateCalled?(shouldRefreshData, shouldActionButtonNeedUpdate)
+    func updateState(shouldRefreshData: Bool, shouldActionButtonNeedUpdate: Bool, activityDescription: String?) {
+        updateStateCalled?(shouldRefreshData, shouldActionButtonNeedUpdate, activityDescription)
     }
     
     func showAlert(title: String, message: String, actionTitle: String) {

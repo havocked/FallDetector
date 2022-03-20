@@ -1,5 +1,5 @@
 //
-//  FileManager.swift
+//  FileIOManager.swift
 //  FallDetector
 //
 //  Created by Nataniel Martin on 3/20/22.
@@ -13,7 +13,7 @@ protocol FileIOProtocol {
     func deleteAllEvents()
 }
 
-struct FileIOController: FileIOProtocol {
+struct FileIOManager: FileIOProtocol {
     
     let fileManager: FileManager
     
