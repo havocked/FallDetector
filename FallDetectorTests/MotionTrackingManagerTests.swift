@@ -29,18 +29,9 @@ class MotionTrackingManagerTests: XCTestCase {
             XCTAssertEqual(error as! MotionTrackingError, MotionTrackingError.unavailable)
         }
     }
-    
-    func testSmth() throws {
-        let deviceMotionManagerMock = DeviceMotionManagerMock(active: false, available: true, timeInterval: 1.0)
-        let sut = MotionTrackingManager(motionManager: deviceMotionManagerMock, operationQueue: .main)
-        let delegateMock = MotionTrackingDelegateMock()
-        sut.delegate = delegateMock
-        try! sut.start()
-        
-        deviceMotionManagerMock.triggerHandler(with: nil, error: nil)
-    }
 }
 
+//TODO: Generate test classes with Sourcery
 final class MotionTrackingDelegateMock: MotionTrackingDelegate {
     func didMotionTrackingStart() {
         
@@ -59,6 +50,7 @@ final class MotionTrackingDelegateMock: MotionTrackingDelegate {
     }
 }
 
+//TODO: Generate test classes with Sourcery
 final class DeviceMotionManagerMock: DeviceMotionManagerProtocol {
     var isAccelerometerActive: Bool {
         return active

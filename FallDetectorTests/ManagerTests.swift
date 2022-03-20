@@ -115,13 +115,33 @@ class ManagerTests: XCTestCase {
         manager.didPressDelete()
         waitForExpectations(timeout: 0.3)
     }
+    
+    func testWhenFallDetectedThenShowAlertCalled() {
+        let expectation = expectation(description: "Show Alert called")
+        expectation.expectedFulfillmentCount = 1
+        
+        let fallDetectorMock = FallDetectorMock()
+        let sut = Manager(fallDetector: fallDetectorMock)
+        let delegateMock = ManagerDelegateMock()
+        sut.delegate = delegateMock
+        
+        delegateMock.showAlertCalled = { title, message, actionTitle in
+            XCTAssertEqual(title, "Fall detection")
+            XCTAssertEqual(message, "A Fall has been detected")
+            XCTAssertEqual(actionTitle, "Ok")
+            expectation.fulfill()
+        }
+        
+        fallDetectorMock.delegate?.fallDetectorUpdate(newFallEvent: .init(date: .now, dropTimeElapsed: 1234))
+        waitForExpectations(timeout: 0.3)
+    }
 }
 
 //TODO: Generate test classes with Sourcery
 final class ManagerDelegateMock: ManagerDelegate {
 
     var updateStateCalled: ((Bool, Bool, String?) -> ())? = nil
-    var showAlertCalled: ((String, String) -> ())? = nil
+    var showAlertCalled: ((String, String, String) -> ())? = nil
     var showActionSheetCalled: ((String, String, String, DeleteActionHandler) -> ())? = nil
     
     func updateState(shouldRefreshData: Bool, shouldActionButtonNeedUpdate: Bool, activityDescription: String?) {
@@ -129,7 +149,7 @@ final class ManagerDelegateMock: ManagerDelegate {
     }
     
     func showAlert(title: String, message: String, actionTitle: String) {
-        
+        showAlertCalled?(title, message, actionTitle)
     }
     
     func showActionSheet(deleteTitle: String, cancelTitle: String, message: String, actionHandler: @escaping DeleteActionHandler) {
@@ -152,4 +172,13 @@ final class FileIoManagerMock: FileIOProtocol {
     func readFromDisk() -> [FallEvent] {
         return fallEvents
     }
+}
+
+//TODO: Generate test classes with Sourcery
+final class FallDetectorMock: FallDetectorProtocol {
+    var delegate: FallDetectorDelegate?
+    
+    func resetState() {}
+    
+    func handle(data: AccelerometerRawData) {}
 }

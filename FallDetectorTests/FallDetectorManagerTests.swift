@@ -91,6 +91,7 @@ final class FallDetectorDelegateMock: FallDetectorDelegate {
     }
 }
 
+//TODO: Generate test classes with Sourcery
 final class EventPredictorMock: EventPredictorProtocol {
     
     var nextPrediction: EventPrediction
