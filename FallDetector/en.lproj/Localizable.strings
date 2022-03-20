@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  FallDetector
+
+  Created by Nataniel Martin on 3/20/22.
+  
+*/
+
+"MAIN_TITLE" = "Fall Logger";
+"TOTAL_EVENTS" = "Total events";
+"ACTION_BUTTON_START" = "Start";
+"ACTION_BUTTON_STOP" = "Stop";
+
+"ACTION_SHEET_DELETE_TITLE" = "Delete";
+"ACTION_SHEET_CANCEL_TITLE" = "Cancel";
+"ACTION_SHEET_DELETE_MESSAGE" = "Are you sure you want to delete?";
+
+"ALERT_OK_TITLE" = "OK";
+"ALERT_ERROR_TITLE" = "Error";
+"ALERT_ERROR_MESSAGE" = "Failed starting Motion Tracker";
+
+"ALERT_FALL_TITLE" = "Fall detection";
+"ALERT_FALL_MESSAGE" = "A Fall has been detected";

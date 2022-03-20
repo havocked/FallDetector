@@ -65,14 +65,14 @@ final class Manager: ManagerProtocol, MotionTrackingDelegate, FallDetectorDelega
     }
     
     func title(for: Section) -> String {
-        return "Total - \(sortedFallEvent.count) events"
+        return "\("TOTAL_EVENTS".localized) - \(sortedFallEvent.count)"
     }
     
     func actionTitle() -> String {
         if motionTracker.isTracking {
-            return "Stop".uppercased()
+            return "ACTION_BUTTON_STOP".localized.uppercased()
         } else {
-            return "Start".uppercased()
+            return "ACTION_BUTTON_START".localized.uppercased()
         }
     }
     
@@ -97,9 +97,9 @@ final class Manager: ManagerProtocol, MotionTrackingDelegate, FallDetectorDelega
             self?.fallEvents.removeAll()
         }
         delegate?.showActionSheet(
-            deleteTitle: "Delete",
-            cancelTitle: "Cancel",
-            message: "Sure you want to delete?",
+            deleteTitle: "ACTION_SHEET_DELETE_TITLE".localized,
+            cancelTitle: "ACTION_SHEET_CANCEL_TITLE".localized,
+            message: "ACTION_SHEET_DELETE_MESSAGE".localized,
             actionHandler: confirmDeleteActionHandler
         )
     }
@@ -114,12 +114,24 @@ final class Manager: ManagerProtocol, MotionTrackingDelegate, FallDetectorDelega
         } catch let error as MotionTrackingError {
             switch error {
             case .unavailable:
-                delegate?.showAlert(title: "Error", message: "Failed starting Motion Tracker - Reason: Unavailable on this device", actionTitle: "Ok")
+                delegate?.showAlert(
+                    title: "ALERT_ERROR_TITLE".localized,
+                    message: "\("ALERT_ERROR_MESSAGE".localized) - Reason: Unavailable on this device",
+                    actionTitle: "ALERT_OK_TITLE".localized
+                )
             case .motionError(message: let message):
-                delegate?.showAlert(title: "Error", message: "Failed starting Motion Tracker - Reason: \(message)", actionTitle: "Ok")
+                delegate?.showAlert(
+                    title: "ALERT_ERROR_TITLE".localized,
+                    message: "\("ALERT_ERROR_MESSAGE".localized) - Reason: \(message)",
+                    actionTitle: "ALERT_OK_TITLE".localized
+                )
             }
         } catch {
-            delegate?.showAlert(title: "Error", message: "Failed starting Motion Tracker - Reason: Unknown", actionTitle: "Ok")
+            delegate?.showAlert(
+                title: "ALERT_ERROR_TITLE".localized,
+                message: "\("ALERT_ERROR_MESSAGE".localized) - Reason: Unknown",
+                actionTitle: "ALERT_OK_TITLE".localized
+            )
         }
     }
     
@@ -130,7 +142,11 @@ final class Manager: ManagerProtocol, MotionTrackingDelegate, FallDetectorDelega
     
     /** MotionTracking delegates **/
     func didMotionTrackingStart() {
-        delegate?.updateState(shouldRefreshData: false, shouldActionButtonNeedUpdate: true, activityDescription: nil)
+        delegate?.updateState(
+            shouldRefreshData: false,
+            shouldActionButtonNeedUpdate: true,
+            activityDescription: nil
+        )
     }
     
     func didMotionTrackingUpdates(rawData: AccelerometerRawData) {
@@ -142,13 +158,21 @@ final class Manager: ManagerProtocol, MotionTrackingDelegate, FallDetectorDelega
     }
     
     func motionTrackingErrored(with error: MotionTrackingError) {
-        delegate?.showAlert(title: "Error", message: "Error: \(error)", actionTitle: "Ok")
+        delegate?.showAlert(
+            title: "ALERT_ERROR_TITLE".localized,
+            message: "\("ALERT_ERROR_MESSAGE".localized) - Reason: \(error)",
+            actionTitle: "ALERT_OK_TITLE".localized
+        )
     }
     
     /** FallDetector delegates **/
     func fallDetectorUpdate(newFallEvent: FallEvent) {
         fallEvents.append(newFallEvent)
-        delegate?.showAlert(title: "Fall detection", message: "A Fall has been detected", actionTitle: "Ok")
+        delegate?.showAlert(
+            title: "ALERT_FALL_TITLE".localized,
+            message: "ALERT_FALL_MESSAGE".localized,
+            actionTitle: "ALERT_OK_TITLE"
+        )
     }
     
     func fallDetectorUpdate(newPrediction: EventPrediction) {

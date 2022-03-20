@@ -27,8 +27,6 @@ class MainViewController: UIViewController {
         configuration.cornerStyle = .large
         configuration.baseForegroundColor = UIColor.systemPink
         configuration.buttonSize = .large
-        configuration.title = "Start".uppercased()
-        
         let actionButton = UIButton(configuration: configuration, primaryAction: nil)
         return actionButton
     }()
@@ -56,7 +54,7 @@ class MainViewController: UIViewController {
         view.addSubview(actionButton)
         setupConstraints()
         
-        title = "Fall detector"
+        title = "MAIN_TITLE".localized
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .trash,
             target: self,

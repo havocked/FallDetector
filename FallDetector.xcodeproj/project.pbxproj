@@ -16,7 +16,7 @@
 		8330CC3D27E335D70065DC50 /* FallDetectorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC3C27E335D70065DC50 /* FallDetectorUITestsLaunchTests.swift */; };
 		8330CC5127E34B400065DC50 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC5027E34B400065DC50 /* EventCell.swift */; };
 		8330CC5627E350380065DC50 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC5527E350380065DC50 /* ReusableView.swift */; };
-		8330CC5827E3508B0065DC50 /* UITableView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC5727E3508B0065DC50 /* UITableView+Extention.swift */; };
+		8330CC5827E3508B0065DC50 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC5727E3508B0065DC50 /* UITableView+Extension.swift */; };
 		8330CC5A27E370E20065DC50 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC5927E370E20065DC50 /* Manager.swift */; };
 		8330CC5C27E374850065DC50 /* FallEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC5B27E374850065DC50 /* FallEvent.swift */; };
 		8330CC6027E379C00065DC50 /* ManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC5F27E379C00065DC50 /* ManagerTests.swift */; };
@@ -32,6 +32,8 @@
 		83E6F43227E78B32003AF49D /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F43127E78B32003AF49D /* CustomDateFormatter.swift */; };
 		83E6F43427E79100003AF49D /* FileIOManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F43327E79100003AF49D /* FileIOManagerTests.swift */; };
 		83E6F43627E793D3003AF49D /* EventPredictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F43527E793D3003AF49D /* EventPredictor.swift */; };
+		83E6F43927E7A064003AF49D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83E6F43B27E7A064003AF49D /* Localizable.strings */; };
+		83E6F43D27E7A0DF003AF49D /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F43C27E7A0DF003AF49D /* String+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +67,7 @@
 		8330CC3C27E335D70065DC50 /* FallDetectorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallDetectorUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8330CC5027E34B400065DC50 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		8330CC5527E350380065DC50 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
-		8330CC5727E3508B0065DC50 /* UITableView+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extention.swift"; sourceTree = "<group>"; };
+		8330CC5727E3508B0065DC50 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		8330CC5927E370E20065DC50 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		8330CC5B27E374850065DC50 /* FallEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallEvent.swift; sourceTree = "<group>"; };
 		8330CC5F27E379C00065DC50 /* ManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerTests.swift; sourceTree = "<group>"; };
@@ -81,6 +83,8 @@
 		83E6F43127E78B32003AF49D /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 		83E6F43327E79100003AF49D /* FileIOManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIOManagerTests.swift; sourceTree = "<group>"; };
 		83E6F43527E793D3003AF49D /* EventPredictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPredictor.swift; sourceTree = "<group>"; };
+		83E6F43A27E7A064003AF49D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		83E6F43C27E7A0DF003AF49D /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 				8330CC1B27E335D20065DC50 /* SceneDelegate.swift */,
 				8330CC1927E335D20065DC50 /* AppDelegate.swift */,
 				8330CC2227E335D60065DC50 /* Assets.xcassets */,
+				83E6F43B27E7A064003AF49D /* Localizable.strings */,
 				8330CC2427E335D60065DC50 /* LaunchScreen.storyboard */,
 				8330CC2727E335D60065DC50 /* Info.plist */,
 				83E6F42127E739F6003AF49D /* FallActivityClassifier.mlmodel */,
@@ -193,7 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				8330CC5527E350380065DC50 /* ReusableView.swift */,
-				8330CC5727E3508B0065DC50 /* UITableView+Extention.swift */,
+				8330CC5727E3508B0065DC50 /* UITableView+Extension.swift */,
+				83E6F43C27E7A0DF003AF49D /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -320,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8330CC2627E335D60065DC50 /* LaunchScreen.storyboard in Resources */,
+				83E6F43927E7A064003AF49D /* Localizable.strings in Resources */,
 				8330CC2327E335D60065DC50 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,13 +355,14 @@
 				8330CC5A27E370E20065DC50 /* Manager.swift in Sources */,
 				83E6F43627E793D3003AF49D /* EventPredictor.swift in Sources */,
 				83E6F43227E78B32003AF49D /* CustomDateFormatter.swift in Sources */,
-				8330CC5827E3508B0065DC50 /* UITableView+Extention.swift in Sources */,
+				8330CC5827E3508B0065DC50 /* UITableView+Extension.swift in Sources */,
 				83E6F42227E739F6003AF49D /* FallActivityClassifier.mlmodel in Sources */,
 				83E6F42827E7503A003AF49D /* FileIOManager.swift in Sources */,
 				83E6F41227E63466003AF49D /* FallDetectorManager.swift in Sources */,
 				8330CC1E27E335D20065DC50 /* MainViewController.swift in Sources */,
 				8330CC5C27E374850065DC50 /* FallEvent.swift in Sources */,
 				8330CC6227E38ACD0065DC50 /* MotionTrackingManager.swift in Sources */,
+				83E6F43D27E7A0DF003AF49D /* String+Extension.swift in Sources */,
 				83E6F42A27E7689C003AF49D /* EventPrediction.swift in Sources */,
 				83E6F41E27E69C09003AF49D /* EventCellViewModel.swift in Sources */,
 				8330CC5627E350380065DC50 /* ReusableView.swift in Sources */,
@@ -407,6 +415,14 @@
 				8330CC2527E335D60065DC50 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		83E6F43B27E7A064003AF49D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				83E6F43A27E7A064003AF49D /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
