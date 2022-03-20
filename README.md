@@ -12,12 +12,12 @@ iOS Deployement Target: 15.3
 XCode Version: 13.3
 
 ## TODO
-[] Finish writing Unit testing for different classes.
-[] Log accelerometer in background (cf. Using the locationManager trick 🪄).
-[] There's some operation queues that need better handling (cf. FallDetectorManager).
-[] Push local notification when fall detected in background.
-[] Improve UI.
-[] Definitely need to improve trained model.
+- [ ] Finish writing Unit testing for different classes.
+- [ ] Log accelerometer in background (cf. Using the locationManager trick 🪄).
+- [ ] There's some operation queues that need better handling (cf. FallDetectorManager).
+- [ ] Push local notification when fall detected in background.
+- [ ] Improve UI.
+- [ ] Definitely need to improve trained model.
 
 
 
