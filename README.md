@@ -8,8 +8,8 @@
 - If a new model is generated with the name "FallActivityClassifier", it will replace automatically the previous one used by the app.
 
 ## Requirements
-iOS Deployement Target: 15.3
-XCode Version: 13.3
+- iOS Deployement Target: 15.3
+- XCode Version: 13.3
 
 ## TODO
 - [ ] Finish writing Unit testing for different classes.
