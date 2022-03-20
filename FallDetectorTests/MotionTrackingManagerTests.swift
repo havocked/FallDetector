@@ -11,37 +11,37 @@ import CoreMotion
 
 class MotionTrackingManagerTests: XCTestCase {
     func testWhenDeviceMotionNotActiveThenTrackingIsFalse() throws {
-        let motionManager = TestDeviceMotionManager(active: false, available: true, timeInterval: 1.0)
-        let sut = MotionTrackingManager(motionManager: motionManager, operationQueue: .main)
+        let deviceMotionManagerMock = DeviceMotionManagerMock(active: false, available: true, timeInterval: 1.0)
+        let sut = MotionTrackingManager(motionManager: deviceMotionManagerMock, operationQueue: .main)
         XCTAssertEqual(sut.isTracking, false)
     }
     
     func testWhenDeviceMotionActiveThenTrackingIsTrue() throws {
-        let motionManager = TestDeviceMotionManager(active: true, available: true, timeInterval: 1.0)
-        let sut = MotionTrackingManager(motionManager: motionManager, operationQueue: .main)
+        let deviceMotionManagerMock = DeviceMotionManagerMock(active: true, available: true, timeInterval: 1.0)
+        let sut = MotionTrackingManager(motionManager: deviceMotionManagerMock, operationQueue: .main)
         XCTAssertEqual(sut.isTracking, true)
     }
     
-    func testWhenDeviceMotionIsUnavailableAndStartCalledThenThrowsError() throws {
-        let motionManager = TestDeviceMotionManager(active: false, available: false, timeInterval: 1.0)
-        let sut = MotionTrackingManager(motionManager: motionManager, operationQueue: .main)
+    func testWhenStartCalledAndDeviceMotionIsUnavailableThenThrowsError() throws {
+        let deviceMotionManagerMock = DeviceMotionManagerMock(active: false, available: false, timeInterval: 1.0)
+        let sut = MotionTrackingManager(motionManager: deviceMotionManagerMock, operationQueue: .main)
         XCTAssertThrowsError(try sut.start()) { error in
             XCTAssertEqual(error as! MotionTrackingError, MotionTrackingError.unavailable)
         }
     }
     
     func testSmth() throws {
-        let motionManager = TestDeviceMotionManager(active: false, available: true, timeInterval: 1.0)
-        let sut = MotionTrackingManager(motionManager: motionManager, operationQueue: .main)
-        let delegate = TestMotionTrackingDelegate()
-        sut.delegate = delegate
+        let deviceMotionManagerMock = DeviceMotionManagerMock(active: false, available: true, timeInterval: 1.0)
+        let sut = MotionTrackingManager(motionManager: deviceMotionManagerMock, operationQueue: .main)
+        let delegateMock = MotionTrackingDelegateMock()
+        sut.delegate = delegateMock
         try! sut.start()
         
-        motionManager.triggerHandler(with: nil, error: nil)
+        deviceMotionManagerMock.triggerHandler(with: nil, error: nil)
     }
 }
 
-final class TestMotionTrackingDelegate: MotionTrackingDelegate {
+final class MotionTrackingDelegateMock: MotionTrackingDelegate {
     func didMotionTrackingStart() {
         
     }
@@ -59,7 +59,7 @@ final class TestMotionTrackingDelegate: MotionTrackingDelegate {
     }
 }
 
-final class TestDeviceMotionManager: DeviceMotionManagerProtocol {
+final class DeviceMotionManagerMock: DeviceMotionManagerProtocol {
     var isAccelerometerActive: Bool {
         return active
     }

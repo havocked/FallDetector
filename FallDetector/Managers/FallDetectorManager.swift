@@ -19,34 +19,6 @@ protocol FallDetectorProtocol: AnyObject {
     func handle(data: AccelerometerRawData)
 }
 
-protocol EventPredictorProtocol {
-    func generateNewPrediction(x: MLMultiArray, y: MLMultiArray, z: MLMultiArray, currentState: MLMultiArray) throws -> EventPrediction
-}
-
-struct EventPredictor: EventPredictorProtocol {
-    private let classifier: FallActivityClassifier
-    
-    init() {
-        self.classifier = try! FallActivityClassifier(configuration: .init())
-    }
-    
-    func generateNewPrediction(x: MLMultiArray, y: MLMultiArray, z: MLMultiArray, currentState: MLMultiArray) throws -> EventPrediction {
-        let modelPrediction = try classifier.prediction(
-            x: x,
-            y: y,
-            z: z,
-            stateIn: currentState
-        )
-        let newPrediction = EventPrediction(
-            state: EventPrediction.State(rawValue: modelPrediction.label)!,
-            stateOut: modelPrediction.stateOut,
-            precision: modelPrediction.labelProbability[modelPrediction.label]!,
-            timestamp: .now
-        )
-        return newPrediction
-    }
-}
-
 final class FallDetectorManager: FallDetectorProtocol {
     struct Configuration {
         let predictionWindowSize: Int
@@ -71,13 +43,12 @@ final class FallDetectorManager: FallDetectorProtocol {
         self.operationQueue = operationQueue
         self.configuration = configuration
         self.eventPredictor = eventPredictor
-        
-        currentIndexInPredictionWindow = 0
+        self.currentIndexInPredictionWindow = 0
+       
+        self.accelerometerX = try! MLMultiArray(shape: [configuration.predictionWindowSize as NSNumber], dataType: .double)
         self.accelerometerY = try! MLMultiArray(shape: [configuration.predictionWindowSize as NSNumber], dataType: .double)
-        accelerometerX = try! MLMultiArray(shape: [configuration.predictionWindowSize as NSNumber], dataType: .double)
-        accelerometerY = try! MLMultiArray(shape: [configuration.predictionWindowSize as NSNumber], dataType: .double)
-        accelerometerZ = try! MLMultiArray(shape: [configuration.predictionWindowSize as NSNumber], dataType: .double)
-        currentState = try! MLMultiArray(
+        self.accelerometerZ = try! MLMultiArray(shape: [configuration.predictionWindowSize as NSNumber], dataType: .double)
+        self.currentState = try! MLMultiArray(
             shape: [configuration.shape as NSNumber],
             dataType: MLMultiArrayDataType.double
         )
@@ -98,18 +69,18 @@ final class FallDetectorManager: FallDetectorProtocol {
     }
     
     func handle(data: AccelerometerRawData) {
-        self.accelerometerX[self.currentIndexInPredictionWindow] = data.x as NSNumber
-        self.accelerometerY[self.currentIndexInPredictionWindow] = data.y as NSNumber
-        self.accelerometerZ[self.currentIndexInPredictionWindow] = data.z as NSNumber
+        accelerometerX[currentIndexInPredictionWindow] = data.x as NSNumber
+        accelerometerY[currentIndexInPredictionWindow] = data.y as NSNumber
+        accelerometerZ[currentIndexInPredictionWindow] = data.z as NSNumber
         
         // Update prediction array index
-        self.currentIndexInPredictionWindow += 1
+        currentIndexInPredictionWindow += 1
         
-        // If data array is full - execute a prediction
-        if self.currentIndexInPredictionWindow >= configuration.predictionWindowSize {
-            self.processNewPrediction()
-            // Start a new prediction window from scratch
-            self.currentIndexInPredictionWindow = 0
+        // If Prediction window filled, process new prediction
+        if currentIndexInPredictionWindow >= configuration.predictionWindowSize {
+            processNewPrediction()
+            // Reset index to start new prediction window
+            currentIndexInPredictionWindow = 0
         }
     }
     
@@ -123,7 +94,7 @@ final class FallDetectorManager: FallDetectorProtocol {
                 if let beginFallPrediction = savedBeginFallPrediction {
                     let dropTimeElapsed = newPrediction.timestamp.timeIntervalSince1970 - beginFallPrediction.timestamp.timeIntervalSince1970
                     let fallEvent = FallEvent(date: newPrediction.timestamp, dropTimeElapsed: dropTimeElapsed)
-                    self.delegate?.fallDetectorUpdate(newFallEvent: fallEvent)
+                    delegate?.fallDetectorUpdate(newFallEvent: fallEvent)
                     savedBeginFallPrediction = nil
                 }
             default:
@@ -132,9 +103,9 @@ final class FallDetectorManager: FallDetectorProtocol {
             
             lastEventPredicted = newPrediction
             currentState = newPrediction.stateOut
-            self.delegate?.fallDetectorUpdate(newPrediction: newPrediction)
-        } catch let err {
-            print("Prediction Error - Reason: \(err)")
+            delegate?.fallDetectorUpdate(newPrediction: newPrediction)
+        } catch let error {
+            print("Prediction Error - Reason: \(error)")
         }
     }
 }

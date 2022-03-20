@@ -29,6 +29,9 @@
 		83E6F42827E7503A003AF49D /* FileIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F42727E7503A003AF49D /* FileIOManager.swift */; };
 		83E6F42A27E7689C003AF49D /* EventPrediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F42927E7689C003AF49D /* EventPrediction.swift */; };
 		83E6F42E27E7766D003AF49D /* MotionTrackingManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F42D27E7766D003AF49D /* MotionTrackingManagerTests.swift */; };
+		83E6F43227E78B32003AF49D /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F43127E78B32003AF49D /* CustomDateFormatter.swift */; };
+		83E6F43427E79100003AF49D /* FileIOManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F43327E79100003AF49D /* FileIOManagerTests.swift */; };
+		83E6F43627E793D3003AF49D /* EventPredictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F43527E793D3003AF49D /* EventPredictor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		83E6F42727E7503A003AF49D /* FileIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIOManager.swift; sourceTree = "<group>"; };
 		83E6F42927E7689C003AF49D /* EventPrediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPrediction.swift; sourceTree = "<group>"; };
 		83E6F42D27E7766D003AF49D /* MotionTrackingManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionTrackingManagerTests.swift; sourceTree = "<group>"; };
+		83E6F43127E78B32003AF49D /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
+		83E6F43327E79100003AF49D /* FileIOManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIOManagerTests.swift; sourceTree = "<group>"; };
+		83E6F43527E793D3003AF49D /* EventPredictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPredictor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +141,7 @@
 				8330CC2727E335D60065DC50 /* Info.plist */,
 				83E6F42127E739F6003AF49D /* FallActivityClassifier.mlmodel */,
 				83E6F42627E74FAB003AF49D /* Extensions */,
+				83E6F43027E78B19003AF49D /* Utilities */,
 			);
 			path = FallDetector;
 			sourceTree = "<group>";
@@ -145,6 +152,7 @@
 				8330CC5F27E379C00065DC50 /* ManagerTests.swift */,
 				83E6F41927E68A9C003AF49D /* FallDetectorManagerTests.swift */,
 				83E6F42D27E7766D003AF49D /* MotionTrackingManagerTests.swift */,
+				83E6F43327E79100003AF49D /* FileIOManagerTests.swift */,
 			);
 			path = FallDetectorTests;
 			sourceTree = "<group>";
@@ -165,6 +173,7 @@
 				83E6F41B27E68BB2003AF49D /* AccelerometerRawData.swift */,
 				8330CC5B27E374850065DC50 /* FallEvent.swift */,
 				83E6F42927E7689C003AF49D /* EventPrediction.swift */,
+				83E6F43527E793D3003AF49D /* EventPredictor.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -196,6 +205,14 @@
 				83E6F41D27E69C09003AF49D /* EventCellViewModel.swift */,
 			);
 			path = EventCell;
+			sourceTree = "<group>";
+		};
+		83E6F43027E78B19003AF49D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				83E6F43127E78B32003AF49D /* CustomDateFormatter.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,6 +346,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8330CC5A27E370E20065DC50 /* Manager.swift in Sources */,
+				83E6F43627E793D3003AF49D /* EventPredictor.swift in Sources */,
+				83E6F43227E78B32003AF49D /* CustomDateFormatter.swift in Sources */,
 				8330CC5827E3508B0065DC50 /* UITableView+Extention.swift in Sources */,
 				83E6F42227E739F6003AF49D /* FallActivityClassifier.mlmodel in Sources */,
 				83E6F42827E7503A003AF49D /* FileIOManager.swift in Sources */,
@@ -351,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83E6F41A27E68A9C003AF49D /* FallDetectorManagerTests.swift in Sources */,
+				83E6F43427E79100003AF49D /* FileIOManagerTests.swift in Sources */,
 				83E6F42E27E7766D003AF49D /* MotionTrackingManagerTests.swift in Sources */,
 				8330CC6027E379C00065DC50 /* ManagerTests.swift in Sources */,
 			);

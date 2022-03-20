@@ -10,17 +10,17 @@ import XCTest
 
 class ManagerTests: XCTestCase {
     func testInitWithEmptyData() throws {
-        let manager = Manager(data: [])
+        let fileManagerMock = FileIoManagerMock(fallEvents: [])
+        let manager = Manager(fileIoManager: fileManagerMock)
         XCTAssertEqual(manager.numberOfSections(), 1)
         XCTAssertEqual(manager.numberOfRows(), 0)
         XCTAssertEqual(manager.title(for: 0), "Total - 0 events")
     }
     
     func testInitWithSomeData() throws {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
-        let manager = Manager(data: [.init(date: Date(timeIntervalSince1970: 123456789), dropTimeElapsed: 12345)], dateFormatter: dateFormatter)
+        let fallEvents: [FallEvent] = [.init(date: Date(timeIntervalSince1970: 123456789), dropTimeElapsed: 12345)]
+        let fileManagerMock = FileIoManagerMock(fallEvents: fallEvents)
+        let manager = Manager(fileIoManager: fileManagerMock)
         let testingCellViewModel = EventCellViewModel(title: "Nov 29, 1973 at 10:33 PM - 12.345s")
         XCTAssertEqual(manager.numberOfSections(), 1)
         XCTAssertEqual(manager.numberOfRows(), 1)
@@ -29,26 +29,30 @@ class ManagerTests: XCTestCase {
     }
     
     func testInitReturnsCorrectNumberOfSections() throws {
-        let manager = Manager(data: [
+        let fallEvents: [FallEvent] = [
             .init(date: .now, dropTimeElapsed: 1234),
             .init(date: .now, dropTimeElapsed: 1234),
             .init(date: .now, dropTimeElapsed: 1234),
             .init(date: .now, dropTimeElapsed: 1234),
             .init(date: .now, dropTimeElapsed: 1234),
             .init(date: .now, dropTimeElapsed: 1234)
-        ])
+        ]
+        let fileManagerMock = FileIoManagerMock(fallEvents: fallEvents)
+        let manager = Manager(fileIoManager: fileManagerMock)
         XCTAssertEqual(manager.numberOfSections(), 1)
     }
     
     func testWhenDataSetReturnsCorrectNumberOfRows() throws {
-        let manager = Manager(data: [
+        let fallEvents: [FallEvent] = [
             .init(date: .now, dropTimeElapsed: 1234),
             .init(date: .now, dropTimeElapsed: 1234),
             .init(date: .now, dropTimeElapsed: 1234),
             .init(date: .now, dropTimeElapsed: 1234),
             .init(date: .now, dropTimeElapsed: 1234),
             .init(date: .now, dropTimeElapsed: 1234)
-        ])
+        ]
+        let fileManagerMock = FileIoManagerMock(fallEvents: fallEvents)
+        let manager = Manager(fileIoManager: fileManagerMock)
         XCTAssertEqual(manager.numberOfRows(), 6)
     }
     
@@ -56,33 +60,35 @@ class ManagerTests: XCTestCase {
         let expectation = expectation(description: "Show ActionSheet")
         expectation.expectedFulfillmentCount = 1
         
-        let manager = Manager(data: [])
-        let managerDelegate = ManagerDelegateTest()
-        managerDelegate.showActionSheetCalled = { deleteTitle, cancelTitle, message, _ in
+        let manager = Manager()
+        let managerDelegateMock = ManagerDelegateMock()
+        managerDelegateMock.showActionSheetCalled = { deleteTitle, cancelTitle, message, _ in
             XCTAssertEqual(deleteTitle, "Delete")
             XCTAssertEqual(cancelTitle, "Cancel")
             XCTAssertEqual(message, "Sure you want to delete?")
             expectation.fulfill()
         }
-        manager.delegate = managerDelegate
+        manager.delegate = managerDelegateMock
         manager.didPressDelete()
         waitForExpectations(timeout: 0.3)
     }
     
     func testWhenDeleteConfirmedReturnsCorrectNumberOfRows() throws {
-        let manager = Manager(data: [
+        let fallEvents: [FallEvent] = [
             .init(date: .now, dropTimeElapsed: 1234),
             .init(date: .now, dropTimeElapsed: 1234),
             .init(date: .now, dropTimeElapsed: 1234),
             .init(date: .now, dropTimeElapsed: 1234),
             .init(date: .now, dropTimeElapsed: 1234),
             .init(date: .now, dropTimeElapsed: 1234)
-        ])
-        let managerDelegate = ManagerDelegateTest()
-        managerDelegate.showActionSheetCalled = { _, _, _, confirmDeleteHandler in
+        ]
+        let fileManagerMock = FileIoManagerMock(fallEvents: fallEvents)
+        let manager = Manager(fileIoManager: fileManagerMock)
+        let managerDelegateMock = ManagerDelegateMock()
+        managerDelegateMock.showActionSheetCalled = { _, _, _, confirmDeleteHandler in
             confirmDeleteHandler()
         }
-        manager.delegate = managerDelegate
+        manager.delegate = managerDelegateMock
         
         manager.didPressDelete()
         
@@ -93,26 +99,26 @@ class ManagerTests: XCTestCase {
         let expectation = expectation(description: "Update State called")
         expectation.expectedFulfillmentCount = 1
         
-        let manager = Manager(data: [])
-        let managerDelegate = ManagerDelegateTest()
-        managerDelegate.updateStateCalled = { shouldRefreshData, shouldActionButtonNeedUpdate, activityDescription  in
+        let manager = Manager()
+        let managerDelegateMock = ManagerDelegateMock()
+        managerDelegateMock.updateStateCalled = { shouldRefreshData, shouldActionButtonNeedUpdate, activityDescription  in
             XCTAssertTrue(shouldRefreshData)
             XCTAssertFalse(shouldActionButtonNeedUpdate)
             XCTAssertNil(activityDescription)
             expectation.fulfill()
         }
         
-        managerDelegate.showActionSheetCalled = { _, _, _, confirmDeleteHandler in
+        managerDelegateMock.showActionSheetCalled = { _, _, _, confirmDeleteHandler in
             confirmDeleteHandler()
         }
-        manager.delegate = managerDelegate
+        manager.delegate = managerDelegateMock
         manager.didPressDelete()
         waitForExpectations(timeout: 0.3)
     }
 }
 
 //TODO: Generate test classes with Sourcery
-class ManagerDelegateTest: ManagerDelegate {
+final class ManagerDelegateMock: ManagerDelegate {
 
     var updateStateCalled: ((Bool, Bool, String?) -> ())? = nil
     var showAlertCalled: ((String, String) -> ())? = nil
@@ -128,5 +134,22 @@ class ManagerDelegateTest: ManagerDelegate {
     
     func showActionSheet(deleteTitle: String, cancelTitle: String, message: String, actionHandler: @escaping DeleteActionHandler) {
         showActionSheetCalled?(deleteTitle, cancelTitle, message, actionHandler)
+    }
+}
+
+//TODO: Generate test classes with Sourcery
+final class FileIoManagerMock: FileIOProtocol {
+    private var fallEvents: [FallEvent]
+    
+    init(fallEvents: [FallEvent]) {
+        self.fallEvents = fallEvents
+    }
+    
+    func saveToDisk(fallEvents: [FallEvent]) {
+        self.fallEvents = fallEvents
+    }
+    
+    func readFromDisk() -> [FallEvent] {
+        return fallEvents
     }
 }

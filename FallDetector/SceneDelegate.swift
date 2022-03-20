@@ -16,12 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
-        let manager = Manager(data: [], dateFormatter: dateFormatter)
-        let mainViewController = MainViewController(manager: manager)
+
+        let mainViewController = MainViewController(manager: Manager())
         
         let navigationController = UINavigationController(rootViewController: mainViewController)
         window?.rootViewController = navigationController

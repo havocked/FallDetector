@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FallEvent {
+struct FallEvent: Decodable, Encodable {
     let date: Date
     let dropTimeElapsed: Double // Expressed in milliseconds
 }

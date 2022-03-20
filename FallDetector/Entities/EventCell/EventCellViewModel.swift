@@ -7,12 +7,6 @@
 
 import Foundation
 
-protocol DateFormatterProtocol {
-    func string(from: Date) -> String
-}
-
-extension DateFormatter: DateFormatterProtocol {}
-
 struct EventCellViewModel: Equatable {
     let title: String
 }
