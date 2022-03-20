@@ -1,0 +1,17 @@
+[sframe]
+version=0
+num_segments=0
+num_columns=5
+nrows=9706
+[column_names]
+0000=y
+0001=label
+0002=x
+0003=session_id
+0004=z
+[column_files]
+0000=m_58a2db20d483a15a.sidx:0
+0001=m_58a2db20d483a15a.sidx:1
+0002=m_58a2db20d483a15a.sidx:2
+0003=m_58a2db20d483a15a.sidx:3
+0004=m_58a2db20d483a15a.sidx:4

@@ -1,0 +1,667 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8330CC1A27E335D20065DC50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC1927E335D20065DC50 /* AppDelegate.swift */; };
+		8330CC1C27E335D20065DC50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC1B27E335D20065DC50 /* SceneDelegate.swift */; };
+		8330CC1E27E335D20065DC50 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC1D27E335D20065DC50 /* MainViewController.swift */; };
+		8330CC2327E335D60065DC50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8330CC2227E335D60065DC50 /* Assets.xcassets */; };
+		8330CC2627E335D60065DC50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8330CC2427E335D60065DC50 /* LaunchScreen.storyboard */; };
+		8330CC3B27E335D70065DC50 /* FallDetectorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC3A27E335D70065DC50 /* FallDetectorUITests.swift */; };
+		8330CC3D27E335D70065DC50 /* FallDetectorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC3C27E335D70065DC50 /* FallDetectorUITestsLaunchTests.swift */; };
+		8330CC5127E34B400065DC50 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC5027E34B400065DC50 /* EventCell.swift */; };
+		8330CC5627E350380065DC50 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC5527E350380065DC50 /* ReusableView.swift */; };
+		8330CC5827E3508B0065DC50 /* UITableView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC5727E3508B0065DC50 /* UITableView+Extention.swift */; };
+		8330CC5A27E370E20065DC50 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC5927E370E20065DC50 /* Manager.swift */; };
+		8330CC5C27E374850065DC50 /* FallEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC5B27E374850065DC50 /* FallEvent.swift */; };
+		8330CC6027E379C00065DC50 /* ManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC5F27E379C00065DC50 /* ManagerTests.swift */; };
+		8330CC6227E38ACD0065DC50 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330CC6127E38ACD0065DC50 /* MotionManager.swift */; };
+		83E6F41227E63466003AF49D /* FallDetectorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F41127E63466003AF49D /* FallDetectorManager.swift */; };
+		83E6F41A27E68A9C003AF49D /* FallDetectorManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F41927E68A9C003AF49D /* FallDetectorManagerTests.swift */; };
+		83E6F41C27E68BB2003AF49D /* AccelerometerRawData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F41B27E68BB2003AF49D /* AccelerometerRawData.swift */; };
+		83E6F41E27E69C09003AF49D /* EventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F41D27E69C09003AF49D /* EventCellViewModel.swift */; };
+		83E6F42227E739F6003AF49D /* FallActivityClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F42127E739F6003AF49D /* FallActivityClassifier.mlmodel */; };
+		83E6F42827E7503A003AF49D /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6F42727E7503A003AF49D /* FileManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8330CC2D27E335D70065DC50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8330CC0E27E335D20065DC50 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8330CC1527E335D20065DC50;
+			remoteInfo = FallDetector;
+		};
+		8330CC3727E335D70065DC50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8330CC0E27E335D20065DC50 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8330CC1527E335D20065DC50;
+			remoteInfo = FallDetector;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8330CC1627E335D20065DC50 /* FallDetector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FallDetector.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8330CC1927E335D20065DC50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8330CC1B27E335D20065DC50 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		8330CC1D27E335D20065DC50 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		8330CC2227E335D60065DC50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8330CC2527E335D60065DC50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8330CC2727E335D60065DC50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8330CC2C27E335D70065DC50 /* FallDetectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FallDetectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8330CC3627E335D70065DC50 /* FallDetectorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FallDetectorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8330CC3A27E335D70065DC50 /* FallDetectorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallDetectorUITests.swift; sourceTree = "<group>"; };
+		8330CC3C27E335D70065DC50 /* FallDetectorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallDetectorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8330CC5027E34B400065DC50 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		8330CC5527E350380065DC50 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		8330CC5727E3508B0065DC50 /* UITableView+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extention.swift"; sourceTree = "<group>"; };
+		8330CC5927E370E20065DC50 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		8330CC5B27E374850065DC50 /* FallEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallEvent.swift; sourceTree = "<group>"; };
+		8330CC5F27E379C00065DC50 /* ManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerTests.swift; sourceTree = "<group>"; };
+		8330CC6127E38ACD0065DC50 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		83E6F41127E63466003AF49D /* FallDetectorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallDetectorManager.swift; sourceTree = "<group>"; };
+		83E6F41927E68A9C003AF49D /* FallDetectorManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallDetectorManagerTests.swift; sourceTree = "<group>"; };
+		83E6F41B27E68BB2003AF49D /* AccelerometerRawData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerometerRawData.swift; sourceTree = "<group>"; };
+		83E6F41D27E69C09003AF49D /* EventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellViewModel.swift; sourceTree = "<group>"; };
+		83E6F42127E739F6003AF49D /* FallActivityClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = FallActivityClassifier.mlmodel; path = FallDetector/FallActivityClassifier.mlmodel; sourceTree = SOURCE_ROOT; };
+		83E6F42727E7503A003AF49D /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8330CC1327E335D20065DC50 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8330CC2927E335D70065DC50 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8330CC3327E335D70065DC50 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8330CC0D27E335D20065DC50 = {
+			isa = PBXGroup;
+			children = (
+				8330CC1827E335D20065DC50 /* FallDetector */,
+				8330CC2F27E335D70065DC50 /* FallDetectorTests */,
+				8330CC3927E335D70065DC50 /* FallDetectorUITests */,
+				8330CC1727E335D20065DC50 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8330CC1727E335D20065DC50 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8330CC1627E335D20065DC50 /* FallDetector.app */,
+				8330CC2C27E335D70065DC50 /* FallDetectorTests.xctest */,
+				8330CC3627E335D70065DC50 /* FallDetectorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8330CC1827E335D20065DC50 /* FallDetector */ = {
+			isa = PBXGroup;
+			children = (
+				8330CC1D27E335D20065DC50 /* MainViewController.swift */,
+				83E6F42427E74F6F003AF49D /* Managers */,
+				83E6F42327E74F48003AF49D /* Entities */,
+				8330CC1B27E335D20065DC50 /* SceneDelegate.swift */,
+				8330CC1927E335D20065DC50 /* AppDelegate.swift */,
+				8330CC2227E335D60065DC50 /* Assets.xcassets */,
+				8330CC2427E335D60065DC50 /* LaunchScreen.storyboard */,
+				8330CC2727E335D60065DC50 /* Info.plist */,
+				83E6F42127E739F6003AF49D /* FallActivityClassifier.mlmodel */,
+				83E6F42627E74FAB003AF49D /* Extensions */,
+			);
+			path = FallDetector;
+			sourceTree = "<group>";
+		};
+		8330CC2F27E335D70065DC50 /* FallDetectorTests */ = {
+			isa = PBXGroup;
+			children = (
+				8330CC5F27E379C00065DC50 /* ManagerTests.swift */,
+				83E6F41927E68A9C003AF49D /* FallDetectorManagerTests.swift */,
+			);
+			path = FallDetectorTests;
+			sourceTree = "<group>";
+		};
+		8330CC3927E335D70065DC50 /* FallDetectorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8330CC3A27E335D70065DC50 /* FallDetectorUITests.swift */,
+				8330CC3C27E335D70065DC50 /* FallDetectorUITestsLaunchTests.swift */,
+			);
+			path = FallDetectorUITests;
+			sourceTree = "<group>";
+		};
+		83E6F42327E74F48003AF49D /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				83E6F41B27E68BB2003AF49D /* AccelerometerRawData.swift */,
+				8330CC5027E34B400065DC50 /* EventCell.swift */,
+				8330CC5B27E374850065DC50 /* FallEvent.swift */,
+				83E6F41D27E69C09003AF49D /* EventCellViewModel.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		83E6F42427E74F6F003AF49D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				8330CC5927E370E20065DC50 /* Manager.swift */,
+				8330CC6127E38ACD0065DC50 /* MotionManager.swift */,
+				83E6F41127E63466003AF49D /* FallDetectorManager.swift */,
+				83E6F42727E7503A003AF49D /* FileManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		83E6F42627E74FAB003AF49D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8330CC5527E350380065DC50 /* ReusableView.swift */,
+				8330CC5727E3508B0065DC50 /* UITableView+Extention.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8330CC1527E335D20065DC50 /* FallDetector */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8330CC4027E335D70065DC50 /* Build configuration list for PBXNativeTarget "FallDetector" */;
+			buildPhases = (
+				8330CC1227E335D20065DC50 /* Sources */,
+				8330CC1327E335D20065DC50 /* Frameworks */,
+				8330CC1427E335D20065DC50 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FallDetector;
+			productName = FallDetector;
+			productReference = 8330CC1627E335D20065DC50 /* FallDetector.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8330CC2B27E335D70065DC50 /* FallDetectorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8330CC4327E335D70065DC50 /* Build configuration list for PBXNativeTarget "FallDetectorTests" */;
+			buildPhases = (
+				8330CC2827E335D70065DC50 /* Sources */,
+				8330CC2927E335D70065DC50 /* Frameworks */,
+				8330CC2A27E335D70065DC50 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8330CC2E27E335D70065DC50 /* PBXTargetDependency */,
+			);
+			name = FallDetectorTests;
+			productName = FallDetectorTests;
+			productReference = 8330CC2C27E335D70065DC50 /* FallDetectorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8330CC3527E335D70065DC50 /* FallDetectorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8330CC4627E335D70065DC50 /* Build configuration list for PBXNativeTarget "FallDetectorUITests" */;
+			buildPhases = (
+				8330CC3227E335D70065DC50 /* Sources */,
+				8330CC3327E335D70065DC50 /* Frameworks */,
+				8330CC3427E335D70065DC50 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8330CC3827E335D70065DC50 /* PBXTargetDependency */,
+			);
+			name = FallDetectorUITests;
+			productName = FallDetectorUITests;
+			productReference = 8330CC3627E335D70065DC50 /* FallDetectorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8330CC0E27E335D20065DC50 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					8330CC1527E335D20065DC50 = {
+						CreatedOnToolsVersion = 13.3;
+					};
+					8330CC2B27E335D70065DC50 = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = 8330CC1527E335D20065DC50;
+					};
+					8330CC3527E335D70065DC50 = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = 8330CC1527E335D20065DC50;
+					};
+				};
+			};
+			buildConfigurationList = 8330CC1127E335D20065DC50 /* Build configuration list for PBXProject "FallDetector" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8330CC0D27E335D20065DC50;
+			productRefGroup = 8330CC1727E335D20065DC50 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8330CC1527E335D20065DC50 /* FallDetector */,
+				8330CC2B27E335D70065DC50 /* FallDetectorTests */,
+				8330CC3527E335D70065DC50 /* FallDetectorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8330CC1427E335D20065DC50 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8330CC2627E335D60065DC50 /* LaunchScreen.storyboard in Resources */,
+				8330CC2327E335D60065DC50 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8330CC2A27E335D70065DC50 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8330CC3427E335D70065DC50 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8330CC1227E335D20065DC50 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8330CC5A27E370E20065DC50 /* Manager.swift in Sources */,
+				8330CC5827E3508B0065DC50 /* UITableView+Extention.swift in Sources */,
+				83E6F42227E739F6003AF49D /* FallActivityClassifier.mlmodel in Sources */,
+				83E6F42827E7503A003AF49D /* FileManager.swift in Sources */,
+				83E6F41227E63466003AF49D /* FallDetectorManager.swift in Sources */,
+				8330CC1E27E335D20065DC50 /* MainViewController.swift in Sources */,
+				8330CC5C27E374850065DC50 /* FallEvent.swift in Sources */,
+				8330CC6227E38ACD0065DC50 /* MotionManager.swift in Sources */,
+				83E6F41E27E69C09003AF49D /* EventCellViewModel.swift in Sources */,
+				8330CC5627E350380065DC50 /* ReusableView.swift in Sources */,
+				83E6F41C27E68BB2003AF49D /* AccelerometerRawData.swift in Sources */,
+				8330CC1A27E335D20065DC50 /* AppDelegate.swift in Sources */,
+				8330CC1C27E335D20065DC50 /* SceneDelegate.swift in Sources */,
+				8330CC5127E34B400065DC50 /* EventCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8330CC2827E335D70065DC50 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83E6F41A27E68A9C003AF49D /* FallDetectorManagerTests.swift in Sources */,
+				8330CC6027E379C00065DC50 /* ManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8330CC3227E335D70065DC50 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8330CC3B27E335D70065DC50 /* FallDetectorUITests.swift in Sources */,
+				8330CC3D27E335D70065DC50 /* FallDetectorUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8330CC2E27E335D70065DC50 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8330CC1527E335D20065DC50 /* FallDetector */;
+			targetProxy = 8330CC2D27E335D70065DC50 /* PBXContainerItemProxy */;
+		};
+		8330CC3827E335D70065DC50 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8330CC1527E335D20065DC50 /* FallDetector */;
+			targetProxy = 8330CC3727E335D70065DC50 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8330CC2427E335D60065DC50 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8330CC2527E335D60065DC50 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8330CC3E27E335D70065DC50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8330CC3F27E335D70065DC50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8330CC4127E335D70065DC50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K7WV5867K9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FallDetector/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = accelerometer;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.bit.FallDetector;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8330CC4227E335D70065DC50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K7WV5867K9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FallDetector/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = accelerometer;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.bit.FallDetector;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8330CC4427E335D70065DC50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K7WV5867K9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.bit.FallDetectorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FallDetector.app/FallDetector";
+			};
+			name = Debug;
+		};
+		8330CC4527E335D70065DC50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K7WV5867K9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.bit.FallDetectorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FallDetector.app/FallDetector";
+			};
+			name = Release;
+		};
+		8330CC4727E335D70065DC50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K7WV5867K9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.bit.FallDetectorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FallDetector;
+			};
+			name = Debug;
+		};
+		8330CC4827E335D70065DC50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K7WV5867K9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.bit.FallDetectorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FallDetector;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8330CC1127E335D20065DC50 /* Build configuration list for PBXProject "FallDetector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8330CC3E27E335D70065DC50 /* Debug */,
+				8330CC3F27E335D70065DC50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8330CC4027E335D70065DC50 /* Build configuration list for PBXNativeTarget "FallDetector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8330CC4127E335D70065DC50 /* Debug */,
+				8330CC4227E335D70065DC50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8330CC4327E335D70065DC50 /* Build configuration list for PBXNativeTarget "FallDetectorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8330CC4427E335D70065DC50 /* Debug */,
+				8330CC4527E335D70065DC50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8330CC4627E335D70065DC50 /* Build configuration list for PBXNativeTarget "FallDetectorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8330CC4727E335D70065DC50 /* Debug */,
+				8330CC4827E335D70065DC50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8330CC0E27E335D20065DC50 /* Project object */;
+}
